@@ -1,0 +1,9 @@
+frontend/
+data/
+.git/
+.gitignore
+README.md
+docker-compose.yml
+vercel.json
+railway.json
+session_summary.md
