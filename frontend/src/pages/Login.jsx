@@ -19,7 +19,7 @@ export default function Login() {
       await login(email, password)
       navigate('/search')
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al iniciar sesion. Verifica tus credenciales.')
+      setError(err.response?.data?.error || 'Error al iniciar sesion. Verifica tus credenciales.')
     } finally {
       setLoading(false)
     }
