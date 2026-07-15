@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/guarani_db
-    username: guarani
-    password: guarani123
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/guarani_db}
+    username: ${SPRING_DATASOURCE_USERNAME:guarani}
+    password: ${SPRING_DATASOURCE_PASSWORD:guarani123}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
