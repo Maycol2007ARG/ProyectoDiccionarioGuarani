@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/guarani_db
+    username: guarani
+    password: guarani123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_charset: UTF-8
+        connection.CharSet: UTF-8
+        connection.characterEncoding: UTF-8
+        connection.useUnicode: true
+  sql:
+    init:
+      mode: never
+
+jwt:
+  secret: ${JWT_SECRET:Y2hhbmdlLXRoaXMtdG8tYS1zZWN1cmUtc2VjcmV0LWtleS1pbi1wcm9kdWN0aW9uLWVudmlyb25tZW50}
+
+cors:
+  allowed-origins: http://localhost:5173
