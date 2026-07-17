@@ -1,13 +1,10 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: guarani_db
     environment:
       POSTGRES_DB: guarani_db
       POSTGRES_USER: guarani
       POSTGRES_PASSWORD: guarani123
-    ports:
-      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -19,24 +16,18 @@ services:
 
   backend:
     build: ./backend
-    container_name: guarani_backend
-    ports:
-      - "8081:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/guarani_db
       SPRING_DATASOURCE_USERNAME: guarani
       SPRING_DATASOURCE_PASSWORD: guarani123
       JWT_SECRET: Y2hhbmdlLXRoaXMtdG8tYS1zZWN1cmUtc2VjcmV0LWtleS1pbi1wcm9kdWN0aW9uLWVudmlyb25tZW50
-      JWT_EXPIRATION: 86400000
+      CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://localhost:5174,http://localhost:3000"
     depends_on:
       db:
         condition: service_healthy
 
   frontend:
     build: ./frontend
-    container_name: guarani_frontend
-    ports:
-      - "5174:80"
     depends_on:
       - backend
 
